@@ -27,6 +27,8 @@ Employee.prototype.getRole = function(){
     console.log('======================');
 };
 
-const emp = new Employee('Sohail', '1', 'ss@hotmail.com');
+// const emp = new Employee('Sohail', '1', 'ss@hotmail.com');
 
-emp.getRole();
+// emp.getRole();
+
+module.exports  = Employee;
