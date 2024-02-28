@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+const { create } = require("domain");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
@@ -19,25 +20,63 @@ const teamMembers = [];
 
 
 function promptOptions(){
-    inquirer
-    .prompt([
+    inquirer.
+    prompt([
         {
             type: 'list',
             name: 'option',
             message:'What team member whould you like to add?',
-            chocies:['Intern', 'Engineer', 'Finished assembling the team'],
+            choices:['Intern', 'Engineer', 'Finish assembling the team'],
         },
     ])
     .then((val) => {
-        if(val.whatTeamMember === 'Intern'){
-            //call add Engineer function
+        switch (val.option) {
+          case "Engineer":
             addEngineer();
-        }else if(val.WhatTeamMember === 'Engineer'){
-            // call add Intern function
+            break;
+          case "Intern":
             addIntern();
-        }else{
+            break;
+          case "Finish assembling the team":
             CreateHTML();
+            break;
         }
+      });
+  }
+
+//Manager
+function addManager(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Enter the team manager's full name:",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Enter the team manager's ID:",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Enter the team manager's email:",
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "Enter the team manager's office number:",
+        },
+    ])
+    .then((val)=>{
+        const manager = new Manager(
+            val.name,
+            val.id,
+            val.email,
+            val.officeNumber
+        );
+        teamMembers.push(manager);
+        promptOptions();
     });
 }
 
@@ -115,43 +154,6 @@ function addIntern(){
         promptOptions();
     });
 }
-
-//Manager
-function addManager(){
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "Enter the team manager's full name:",
-        },
-        {
-            name: "input",
-            name: "id",
-            message: "Enter the team manager's ID:",
-        },
-        {
-            name: "input",
-            name: "email",
-            message: "Enter the team manager's email:",
-        },
-        {
-            name: "input",
-            name: "officeNumber",
-            message: "Enter the team manager's office number:",
-        },
-    ])
-    .then((val)=>{
-        const manager = new Manager(
-            val.name,
-            val.id,
-            val.email,
-            val.officeNumber
-        );
-        teamMembers.push(manager);
-        promptOptions();
-    });
-}
-
 
 /*------------------------- Since all team memebrs prompot questions have been created now render those data using html  */
 
