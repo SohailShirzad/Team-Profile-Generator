@@ -24,3 +24,5 @@ Please follow the guidelines below in order to install the project on your local
 https://github.com/SohailShirzad/Team-Profile-Generator
 
 
+#Output
+![team generator app](image.png)
