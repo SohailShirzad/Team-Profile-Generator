@@ -14,7 +14,7 @@ Please follow the guidelines below in order to install the project on your local
 
 2. Then, ensure that your repo includes a package.json with the required depencies such as jest and inquirer. 
 
-3. Run node index.js in your terminal to luach the application, and the first question should appear in your terminal. 
+3. change directory to starter and run node index.js in your terminal to lunch the application, and the first question should appear in your terminal. 
 
 4. To check Jest works, run npm run test and inspect what the terminal returns. 
 
